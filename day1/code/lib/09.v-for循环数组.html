@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+
+    <div id = "app">
+        <!-- <p v-for = "(item,i) in list1">{{item}}</p> -->
+        <!--取索引的时候这么取-->
+        <!-- <p v-for = "(item,i) in list1">{{i}}</p> -->
+
+        <p v-for = "(user,i) in list2">{{user.id}}:{{user.name}}</p>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el:'#app',
+
+            data:{
+                list1:[5,2,3,4],  //循环普通数组
+                list2:[           //循环对象数组
+                    {id:1,name:"zs"},
+                    {id:2,name:"ls"}
+                ]
+            },
+
+            method:{
+
+            }
+        })
+    </script>
+    
+</body>
+</html>

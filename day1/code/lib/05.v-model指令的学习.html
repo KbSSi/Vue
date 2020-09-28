@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id = "app">
+        <h4>{{msg}}</h4>
+        <!--v-bind只能实现数据的单向绑定，从M绑定到V-->
+        <!--input称为表单元素-->
+        <!-- <input type="text" v-bind:value = 'msg'> -->
+
+        <!--v-model可以实现M和V的双向数据绑定-->
+        <!--v-model只能用在表单元素中，常见的表单元素有input select checkbox等-->
+        <input type="text" v-model= 'msg'>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: { 
+                msg:"hey"
+            },
+            methods: { }
+        });
+    </script>
+    </body>
+
+</html>

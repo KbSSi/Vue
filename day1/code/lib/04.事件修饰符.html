@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src = ./vue.js></script>
+    <!--样式-->
+    <style>     
+        .inner{
+            height: 150px;
+            background-color: darkcyan;
+        }
+
+        .outer{
+            padding: 180px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!--触发事件原本有冒泡机制，事件会往外冒,.stop是事件修饰符-->
+        <!-- <div class = "inner" @click="innerclick">  
+            <input type="button" value = "搓他" @click.stop = "butclick">
+        </div> -->
+        <!--使用.prevent来阻止默认行为-->
+        <!-- <a href="http://www.baidu.com" @click.prevent  = "alink">有问题，找百度</a> -->
+
+        <!--使用.self实现只有点击当前元素的时候，才会触发事件处理函数-->
+        <!-- <div class = "inner" @click.self="innerclick">  
+            <input type="button" value = "搓他" @click = "butclick">
+        </div> -->
+
+         <!--使用.once来只触发一次处理函数,这里只触发了一次prevent-->
+        <!-- <a href="http://www.baidu.com" @click.prevent.once  = "alink">有问题，找百度</a> -->
+
+        <!--.self只会阻止自己的冒泡行为，不会影响别人的冒泡行为，而.stop会阻止所有的冒泡行为-->
+        <div class = "outer" @click = "outclick">
+            <div class = "inner" @click.self="innerclick">  
+                <input type="button" value = "搓他" @click = "butclick">
+            </div>
+        </div>
+        
+    </div>
+
+    <script>
+        
+        var vm = new Vue({   //Vue记得大写
+            el:'#app',
+
+            data:{
+
+            },
+
+            methods:{
+                innerclick(){
+                    console.log("这是触发了inner")
+                },
+
+                butclick(){
+                    console.log("这是触发了but")
+                },
+
+                alink(){
+                    console.log("触发了alink")
+                },
+                
+                outclick(){
+                    console.log("触发了外层click")
+                }
+            }
+        });
+    </script>
+    
+</body>
+</html>

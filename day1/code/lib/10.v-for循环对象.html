@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id = "app">
+        <!--注意这里是先取了值，再取键-->
+        <!-- <p v-for="(value,key,i) in user">键:{{key}},值:{{value}},索引:{{i}}</p> -->
+
+        <!--in可以放数组，数组对象，真正对象，数字-->
+        <!--注意从1开始-->
+        <p v-for = "count in 10">{{count}}</p>  
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: { 
+                user:{    //花括号是对象
+                        id:1,
+                        name:"Tony Stack",
+                        gender:"man"
+                }
+            },
+            methods: { }
+        });
+    </script>
+    </body>
+
+</html> 

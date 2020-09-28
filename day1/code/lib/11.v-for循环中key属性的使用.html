@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id = "app">
+        <div>
+            <label >id:
+                <input type = "text" v-model="id" >
+            </label>
+    
+            <label>name:
+                <input type = "text" v-model="name">
+            </label>
+    
+            <input type = "button" value="添加" @click = "add">
+    
+            <!--这里如果没有用key,下面的checkbox在勾选的时候会出现数据关联性问题-->
+            <!--v-for使用key的时候，key属性只能使用number或者string-->
+            <!--key是一个属性，item是一个变量，所以要用v-bind绑定-->
+            <p v-for = "item in list" :key = 'item.id'>
+                <input type="checkbox" >{{item.id}} : {{item.name}}
+            </p>
+        </div>
+        
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: { 
+                id:" ",
+
+                name:" ",
+
+                list:[
+                    {id:1,name:"kwb"},
+                    {id:2,name:"hs"}
+                ]
+            },
+            methods: {
+                add(){
+                    this.list.push({id:this.id,name:this.name})
+                }
+             }
+        });
+    </script>
+</body>
+
+</html>

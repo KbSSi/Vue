@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id = "app">
+        <!--实参的第一个参数默认为data,这是第二个参数，指的是要改变成为的值-->
+        <!--过滤器可以连续调用 |  |-->
+        <p>{{msg | msgFormat("迷+1")}}</p>  
+    </div>
+
+    <script>
+
+        Vue.filter('msgFormat',function(msg,arg,arg2){
+
+            //字符串replace方法，第一个参数除了可写一个字符串之外，还可以定义一个正则
+            return msg.replace(/风/g,arg+arg2)   //全局的正则表达
+        })
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg:"我就是风一样的男子"
+             },
+            methods: { }
+        });
+    </script>
+</body>
+
+</html>

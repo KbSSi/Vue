@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type = "button" value="浪起来" v-on:click = "yes">
+        <input type ="button" value="低调" v-on:click = "stop">
+        <h4 v-text = "msg"></h4>
+       
+        
+    </div>
+    
+    <script>
+        //在VM实例中，要访问实例内部的元素，用this.
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                msg:'猥琐发育，别浪',
+                IntervalId:null
+            },
+
+            methods:{
+                //业务代码--将第一个字符放到末尾
+                //1.字符串的操作用substr 2.为了实现一直截取的功能，需要用定时器
+                
+                
+                yes(){   //方法也可以这样写，会自动解析成之前那种
+                    if(this.IntervalId != null) return;  //退出这个函数
+                    var _this = this   //这里注意this的指向问题，这里的this是属于实例的
+                    this.IntervalId =setInterval(function(){   //一个定时器，设置为400毫秒
+                        //setInterval(() => {这里的=>解决了this的指向问题，
+                        //因为每个function都会生成一个this指针。外面不用定义var也行
+                        var start = _this.msg.substring(0,1)
+                        var end = _this.msg.substring(1)
+                        _this.msg = end + start
+                    }, 400);
+                },
+
+                stop(){
+                    clearInterval(this.IntervalId)
+                    //每当清除计时器，重新赋值IntervalId
+                    this.IntervalId = null
+                }
+            }
+        });
+    </script>
+</body>
+</html>
